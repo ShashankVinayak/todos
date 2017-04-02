@@ -1,10 +1,10 @@
 var main = function () {
 
     /* Model which is used to store each todo */
-    var todoModel = function () {
-        id = "";
-        value = "";
-        completed = false;
+    var TodoModel = function (id, value, completed) {
+        this.id = id;
+        this.value = value;
+        this.completed = completed;
     };
 
     /* Variable to decide which list(all/active/completed) to display */
@@ -27,7 +27,7 @@ var main = function () {
     /* 
         Function which returns todo list from localStorage 
         Input : none
-        Output : Array of todo Objects(todoModel) 
+        Output : Array of todo Objects(TodoModel) 
     */
     var getTodoList = function () {
         return JSON.parse(localStorage.getItem("todos"));
@@ -42,7 +42,7 @@ var main = function () {
         return Math.floor((Math.random() * 123456789) + 123);
     };
 
-    /* Array which contains todo Objects(todoModel) */
+    /* Array which contains todo Objects(TodoModel) */
     var todoList = getTodoList();
 
     /*
@@ -63,28 +63,30 @@ var main = function () {
         Output : Creates single todo UI 
     */
     var createTodoListUI = function (todoID, todoValue) {
-        var id = todoID;
-        var value = todoValue;
+        var id,value,parentDiv1,div,parentDiv2,inputComplete,inputDelete,para;
 
-        var parentDiv1 = document.getElementById('todolist-content');
-        var div = document.createElement('div');
+        id = todoID;
+        value = todoValue;
+
+        parentDiv1 = document.getElementById('todolist-content');
+        div = document.createElement('div');
         div.setAttribute('class', 'todo');
         div.setAttribute('id', id);
         parentDiv1.appendChild(div);
 
-        var parentDiv2 = document.getElementById(id);
+        parentDiv2 = document.getElementById(id);
 
-        var inputComplete = document.createElement('input');
+        inputComplete = document.createElement('input');
         inputComplete.setAttribute('type', 'checkbox');
         inputComplete.setAttribute('class', 'complete');
         parentDiv2.appendChild(inputComplete);
 
-        var inputDelete = document.createElement('input');
+        inputDelete = document.createElement('input');
         inputDelete.setAttribute('type', 'button');
         inputDelete.setAttribute('class', 'delete');
         parentDiv2.appendChild(inputDelete);
 
-        var para = document.createElement('p');
+        para = document.createElement('p');
         para.textContent = value;
         parentDiv2.appendChild(para);
     };
@@ -126,22 +128,22 @@ var main = function () {
     */
     var addTodo = function (event) {
         if (event.keyCode === 13) {
+            var id, value, completed, todo, todos;
 
             if (todoInput.value == "") {
                 return;
             }
-
+            id = getTodoID();
+            value = todoInput.value;
+            completed = false;
+            todo = new TodoModel(id, value, completed);
+            
             if (todoList == null) {
                 todoList = [];
             }
-            var todo = new todoModel();
-            todo.id = getTodoID();
-            todo.value = todoInput.value;
-            todo.completed = false;
-
             todoList.push(todo);
 
-            var todos = JSON.stringify(todoList);
+            todos = JSON.stringify(todoList);
             localStorage.setItem("todos", todos);
             todoInput.value = "";
 
@@ -156,8 +158,8 @@ var main = function () {
     */
 
     var deleteTodo = function (event) {
-        var todos;
-        var id = event.currentTarget.id;
+        var todos,id;
+        id = event.currentTarget.id;
 
         if (todoList != null) {
             if (todoList.length == 1) {
@@ -182,13 +184,12 @@ var main = function () {
         Output : Deletes all the completed todos
     */
     var deleteCompletedTodos = function () {
-
-        var todos;
-        var completedTodoIndex = [];
+        var todos,completedTodoIndex,i,arrayLength;
+        completedTodoIndex = [];
 
         if (todoList != null) {
-            var i = 0;
-            var arrayLength = todoList.length;
+            i = 0;
+            arrayLength = todoList.length;
             while (i < arrayLength) {
                 if (todoList[i].completed) {
                     todoList.splice(i, 1);
@@ -227,8 +228,8 @@ var main = function () {
         Output : Appropriate todo(based on id) is marked as completed
     */
     var completedTodo = function (event) {
-        var todos;
-        var id = event.currentTarget.id;
+        var todos,id;
+        id = event.currentTarget.id;
 
         if (todoList != null) {
             for (var i = 0; i < todoList.length; i++) {
@@ -248,11 +249,10 @@ var main = function () {
         Output : Changes the UI of completed todos, UI of selectall checkbox and UI of 'Clear Completed'
     */
     var completedTodoUI = function () {
-        var id;
-        var para;
-        var input;
-        var completedTodoCount = 0;
-        var selectAllCheckboxInput = document.getElementById('selectall');
+        var id,para,input,completedTodoCount,selectAllCheckboxInput;
+
+        completedTodoCount = 0;
+        selectAllCheckboxInput = document.getElementById('selectall');
 
         if (todoList != null) {
             for (var i = 0; i < todoList.length; i++) {
@@ -324,8 +324,8 @@ var main = function () {
         Output : All todos are marked/unmarked as completed 
     */
     var completedAllTodos = function (event) {
-        var todos;
-        var checkboxInput = event.target;
+        var todos,checkboxInput;
+        checkboxInput = event.target;
         if (checkboxInput.checked) {
             checkboxInput.setAttribute('class', 'selectedall');
             if (todoList != null) {
@@ -377,12 +377,13 @@ var main = function () {
         Output : An Input DOM Element is inserted and appropriate function(addEditedTodo) is called to add edited todo
     */
     var editTodo = function (event) {
-        var textInput;
-        var para = event.target;
-        var divID = para.parentElement.id;
-        var todo = event.target.textContent;
-        var checkbox = event.target.parentElement.childNodes[0];
-        var button = event.target.parentElement.childNodes[1];
+        var textInput,para,divID,todo,checkbox,button;
+
+        para = event.target;
+        divID = para.parentElement.id;
+        todo = event.target.textContent;
+        checkbox = event.target.parentElement.childNodes[0];
+        button = event.target.parentElement.childNodes[1];
 
         checkbox.setAttribute('style', 'visibility:hidden');
         button.setAttribute('style', 'visibility:hidden');
@@ -408,7 +409,6 @@ var main = function () {
         Output : Displays all todos
     */
     var displayAllTodos = function () {
-
         allLink.setAttribute('class', 'option-selected');
         activeLink.setAttribute('class', '');
         completedLink.setAttribute('class', '');
@@ -437,7 +437,6 @@ var main = function () {
         Output : Displays completed todos list
     */
     var displayCompletedTodos = function () {
-
         allLink.setAttribute('class', '');
         activeLink.setAttribute('class', '');
         completedLink.setAttribute('class', 'option-selected');
@@ -452,8 +451,10 @@ var main = function () {
         Output : Appropriate help message is displayed
     */
     var displayHelpTextContent = function (event) {
-        var targetElement = event.target;
-        var eventType = event.type;
+        var targetElement,eventType;
+
+        targetElement = event.target;
+        eventType = event.type;
         switch (eventType) {
             case "mouseover":
                 if (targetElement.id == "selectall") {
@@ -525,5 +526,5 @@ var main = function () {
     deleteAllBtn.addEventListener('click', deleteAllTodos, false);
 }
 
- /* Script is loaded after page load */
+/* Script is loaded after page load */
 window.addEventListener('load', main);
