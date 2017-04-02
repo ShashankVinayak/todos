@@ -1,0 +1,53 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>To-Do</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div id="head-content">
+                <header>
+                    <h1>to-do</h1>
+                </header>
+                <div class="form">
+                    <input type="text" name="todo" id="todo" placeholder="What you want to do?" autofocus>
+                </div>
+            </div>
+            <div id="bodycontent" class="hide">
+                <div class="option-content">
+                    <p id="clearcompleted" class="hide">Clear Completed</p>
+                    <p id="dummyp"></p>
+                    <ul>
+                        <li id="alllink" class="option-selected">All</li>
+                        <li id="activelink">Active</li>
+                        <li id="completedlink">Completed</li>
+                    </ul>
+                    <p id="itemsTodo"></p>
+                </div>
+                <div class="button-content">
+                    <input type="checkbox" id="selectall">
+                    <input type="button" id="deleteall">
+                    <p id="btnpara"></p>
+                </div>
+            </div>
+            <div id="todolist-content">
+                <!--Dynamically generated todo list goes here-->
+            </div>
+            <div id="foot-content">
+                <footer>
+                    <p>Double Click to edit a todo</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+/* TAG SELECTORS */
+
+body{
+    background-color: #ECEFF1;
+}
+
+header{
+    margin: auto;
+}
+
+header h1{
+    font-family: 'Comic Sans MS', Helvetica, Arial;
+    font-size: 500%;
+    color: #B2DFDB;
+}
+
+/* CLASS SELECTORS */
+
+.hide{
+    display:none;
+}
+
+ .container{
+     width: 90%;
+     margin: auto;
+ }
+
+.content{
+    width:60%;
+    margin: auto;
+}
+
+.form{
+    margin: 2% auto;
+}
+
+.form input{
+    width: 90%;
+    height: 60px;
+    margin: 1% auto;
+    padding: 2% 4%;
+    font-family: Helvetica, Arial;
+    font-size: 150%;
+    color: #616161;
+    background-color: white;
+    border-style: none; 
+    box-shadow: 0 10px 30px 5px #CFD8DC;
+}
+
+.form input:focus{
+    outline: none;
+}
+
+.option-content{
+    margin-top:2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+    border-radius: 2px;
+    font-size: 105%;
+}
+
+.option-content > *{
+    font-family: Helvetica;
+    color: #757575;
+}
+
+.option-content ul{
+    width:50%;
+    float: right;
+    margin: 1%;
+    text-align: center;
+}
+
+.option-content ul li{
+    display: inline-block;
+    margin: 1%;
+    list-style: none;
+    padding: 2%;
+    border-radius: 2px;
+    box-shadow: 0 0 0.5px 0.5px #CFD8DC;
+    cursor: pointer;
+}
+
+.option-content ul .option-selected{
+    box-shadow: 0 0 2px 2px #CFD8DC;
+}
+
+.option-content:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.button-content{
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+    border-top-style: solid;
+    border-top-width: 0.5px;
+    border-top-color: #E0E0E0;
+    border-radius: 2px;
+    font-size: 105%;
+}
+
+.button-content > #selectall, .button-content > #deleteall{
+    margin : 1% 2%;
+}
+
+.button-content > p{
+    width:80%;
+    font-family: Helvetica;
+    color: #757575;
+    float: right;
+    text-align: center;
+    margin-top:1%;
+    padding-top:1%;
+}
+
+.button-content:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.todo{
+    padding-top: 2%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-bottom-style:solid;
+    border-width:0.5px;
+    border-color:#E0E0E0;
+}
+
+.complete, #selectall{
+    float:left;
+}
+
+.complete:hover, #selectall:hover{
+    background-color: #8BC34A;
+}
+
+.completed{
+    float:left;
+    background-color: #8BC34A;
+}
+
+.selectedall{
+    background-color: #8BC34A;
+}
+
+.todocompleted{
+    color:#BDBDBD !important;
+    text-decoration: line-through;
+}
+
+.delete, #deleteall{
+    float:right;
+    border-style: none;
+    background-color: white;
+}
+
+.delete:hover, #deleteall:hover{
+    background-color: #F44336;
+}
+
+.todo p{
+    font-family: Helvetica, Arial;
+    font-size: 150%;
+    color: #616161;
+    width:88%;
+    float: right;
+    text-align: center;
+    word-break:break-all;
+}
+
+.todo:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* ID SELECTORS */
+
+#head-content{
+       text-align: center;
+}
+
+#clearcompleted, #dummyp{
+    width:22%;
+    float: right;
+    margin-top:3%;
+    margin-left:1%;
+    margin-right: 1%;
+    text-align: center;
+    cursor: pointer
+}
+
+#clearcompleted:hover, #clearall:hover{
+    text-decoration: underline;
+}
+
+#itemsTodo{
+    width:22%;
+    float: left;
+    margin-top:3%;
+    margin-left:1%;
+    margin-right: 1%;
+}
+
+#todolist-content{
+    margin: 1% 5%;
+    background-color: white;
+    border-radius: 2px;
+}
+
+#foot-content{
+    margin: 5% 5%;
+    font-family: 'Comic Sans MS', Helvetica, Arial;
+    font-size: 90%;
+    color: #B2DFDB;
+    text-align: center;
+}
+
+/* ATTRIBUTE SELECTORS */
+
+input[type=checkbox], input[type=button]{
+    outline: none;
+    width: 6%;
+    height:6%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 50%;
+    box-shadow: 0 0 1px 0.5px #9E9E9E;
+}
+
+/* BROWSER SPECIFIC */
+
+::-webkit-input-placeholder {
+  color: #E0E0E0;
+  font-family: Helvetica, Arial;
+}
+
+::-moz-placeholder {
+  color: #E0E0E0;
+  font-family: Helvetica, Arial;
+}
+
+:-ms-input-placeholder {
+  color: #E0E0E0;
+  font-family: Helvetica, Arial;
+}
+
+:-moz-placeholder {
+  color: #E0E0E0;
+  font-family: Helvetica, Arial;
+}
